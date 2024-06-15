@@ -1,19 +1,19 @@
-import cityDB from "../db.json";
-import { Request, Response, NextFunction } from "express";
-import { CityRequest } from "../types/city";
+import { pool } from "../db/app";
+import { Response, NextFunction } from "express";
+import { CityRequest, ICity } from "../types/city";
+import { RowDataPacket } from "mysql2";
 
-export const validateCityId = (
+export const validateCityId = async (
   req: CityRequest,
   res: Response,
   next: NextFunction
 ) => {
   const cityId = req.params.id;
-  const city = cityDB.find((c) => c.id === cityId);
-
-  if (!city) {
+  const query = `SELECT * FROM cities where id = '${cityId}'`;
+  const [result] = await pool.query<ICity & RowDataPacket[]>(query);
+  if (!result.length) {
     return res.status(404).json({ error: "city not found" });
   }
-
-  req.city = city;
+  req.city = result;
   next();
 };

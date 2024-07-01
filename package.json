@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pruduction": "tsc && node dist/entry.js",
-    "dev-new": "tsc --watch & node --watch dist/entry.js",
-    "dev": "nodemon src/entry.ts"
+    "prod": "tsc && node dist/server.js",
+    "dev": "tsc --watch & node --watch dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +16,8 @@
     "express": "^4.19.2",
     "joi": "^17.13.1",
     "mysql2": "^3.10.1",
-    "npm": "^10.8.0"
+    "npm": "^10.8.0",
+    "typeorm": "^0.3.20"
   },
   "type": "commonjs",
   "devDependencies": {

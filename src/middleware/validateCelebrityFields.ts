@@ -1,15 +1,13 @@
 import Joi from "joi";
 import { Response, Request, NextFunction } from "express";
-import { City } from "../db/entity/City";
+import { Celebrity } from "../db/entity/Celebrity";
 
-const joi = Joi.object<City>({
+const joi = Joi.object<Celebrity>({
   name: Joi.string().required(),
-  country: Joi.string().required(),
-  population: Joi.number().required(),
-  celebrity: Joi.number().required(),
+  occupation: Joi.string().required(),
 });
 
-export const validateCityFields = (
+export const validateCelebrityFields = (
   req: Request,
   res: Response,
   next: NextFunction
